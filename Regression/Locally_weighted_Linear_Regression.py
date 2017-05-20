@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 def GetData_x_y(file_path):
     """
@@ -16,7 +17,7 @@ def GetData_x_y(file_path):
 
 def lwlr(testPoint, x, y, k=1.0):
     """
-
+    对应一个点的局部加权后的拟合值计算
     :param testPoint:
     :param x:
     :param y:
@@ -24,24 +25,27 @@ def lwlr(testPoint, x, y, k=1.0):
     :return:
     """
     x = np.mat(x)
-    y = np.mat(y)
+    y = np.mat(y).T
     m = x.shape[0]
     weights = np.mat(np.eye(m))
 
     for j in range(m):
-        diffMat = testPoint - x[j:]
-        print(diffMat)
+    # 针对每一个测试点testPoint，计算testPoint到各点的距离，确定一个对应的加权系数
+        diffMat = testPoint - x[j, :]
         weights[j, j] = np.exp(diffMat * diffMat.T / (-2.0*k**2))
     xTx = x.T * (weights * x)
+
     if np.linalg.det(xTx) == 0.0:
         print('This is a singular matrix, can not do inverse')
         return
+
     ws = xTx.I * (x.T * (weights * y))
+    # 返回的是该测试点的加权后的取值
     return testPoint * ws
 
 def lwlrTest(testArr, x, y, k = 1.0):
     """
-
+    对整个数据集进行局部加权后可得全体测试数据对应的拟合值
     :param testArr:
     :param x:
     :param y:
@@ -52,11 +56,25 @@ def lwlrTest(testArr, x, y, k = 1.0):
     yHat = np.zeros(m)
 
     for i in range(m):
-        yHat = lwlr(testArr[i], x, y, k)
+        yHat[i] = lwlr(testArr[i], x, y, k)
     return yHat
 
+def Plot_Fit_Line(x, y, yHat):
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    # scatter方法，绘制散点图，marker属性，是散点的形状，color，是散点的颜色
+    ax.scatter(x[:, 1], y, marker='x', color='r')
+    srtInd = x[:, 1].argsort(0)  # 按值大小从小到大排列x值下标，因为散点图是按照大小顺序绘制的
+    xSort = x[srtInd]  # 得到排列好的x值
+    ax.plot(xSort[:, 1], yHat[srtInd], color='b')  # 绘制拟合曲线
+
+    plt.show()
 if __name__ == '__main__':
     x, y = GetData_x_y('resources/ex0.txt')
     print(y[0])
     print(x[0])
     print(lwlr(x[0], x, y, 1.0))
+    yHat = lwlrTest(x, x, y, 0.003)
+    # print(yHat)
+    Plot_Fit_Line(x, y, yHat)

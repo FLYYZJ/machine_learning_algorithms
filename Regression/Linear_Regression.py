@@ -38,7 +38,7 @@ def UniryStandRegress(x, y):
     ws = xTx.I * (x.T * y)
     print(ws.shape)
     return ws
-def Plot_Curve(x, y, ws):
+def Plot_Fit_Line(x, y, ws):
     """
     绘制拟合直线程序
     :param x:
@@ -63,4 +63,4 @@ def Plot_Curve(x, y, ws):
 if __name__ == "__main__":
     x, y = GetData_x_y('resources/ex0.txt')
     print(UniryStandRegress(x, y))
-    Plot_Curve(x, y, UniryStandRegress(x, y))
+    Plot_Fit_Line(x, y, UniryStandRegress(x, y))
