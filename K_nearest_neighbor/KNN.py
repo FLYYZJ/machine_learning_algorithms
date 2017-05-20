@@ -23,7 +23,7 @@ def Knn_Classifier(inX, dataSet, labels, k):
         voteIlabel = labels[sortedDistIndicies[i]]  # 依次存入欧氏距离前k个最小距离的编号
         classCount[voteIlabel] = classCount.get(voteIlabel, 0) + 1  # 对应一个字典
     sortedClassCount = sorted(classCount.items(), key=operator.itemgetter(1), reverse=True)  # 对字典进行排序
-    return sortedClassCount[0][0]  # 最高
+    return sortedClassCount[0][0]  # 最高值对应类别即为inX的类别
 
 def file2matrix(filename):
     f = open(filename)
