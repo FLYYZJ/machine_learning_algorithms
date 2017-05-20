@@ -23,8 +23,12 @@ def UniryStandRegress(x, y):
     :param y:
     :return:
     """
+
+
     x = np.mat(x)
     y = np.mat(y).T
+
+
     print(x.shape, y.shape)
     xTx = x.T * x
     print(xTx.shape)
@@ -48,6 +52,10 @@ def Plot_Curve(x, y, ws):
     ax.scatter(x[:, 1], y, marker='x', color='r')
     # yHat预测值
     yHat = np.dot(x, ws)
+    # 计算线性相关性
+    print('线性相关性矩阵：')
+    print(np.corrcoef(yHat.T, y))
+    # 绘制拟合曲线
     ax.plot(x[:, 1], yHat)
     plt.show()
 
