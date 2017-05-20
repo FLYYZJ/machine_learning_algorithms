@@ -60,7 +60,13 @@ def lwlrTest(testArr, x, y, k = 1.0):
     return yHat
 
 def Plot_Fit_Line(x, y, yHat):
-
+    """
+    绘图程序
+    :param x:
+    :param y:
+    :param yHat:
+    :return:
+    """
     fig = plt.figure()
     ax = fig.add_subplot(111)
     # scatter方法，绘制散点图，marker属性，是散点的形状，color，是散点的颜色
@@ -70,6 +76,7 @@ def Plot_Fit_Line(x, y, yHat):
     ax.plot(xSort[:, 1], yHat[srtInd], color='b')  # 绘制拟合曲线
 
     plt.show()
+
 if __name__ == '__main__':
     x, y = GetData_x_y('resources/ex0.txt')
     print(y[0])
