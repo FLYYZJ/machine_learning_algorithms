@@ -10,8 +10,16 @@ def GetData_x_y(file_path):
     :return:
     """
     Data = pd.read_table(file_path, header=None)
-    Data = Data.rename(columns={1: 'x', 2: 'y'})
-    # print(Data)
+
+    new_columns_name = {}
+    for i in range(len(Data.columns)):
+        if i == len(Data.columns) - 1:
+            new_columns_name[i] = 'y'
+            continue
+        new_columns_name[i] = 'x{}'.format(i)
+
+    Data = Data.rename(columns=new_columns_name)
+    print(Data)
     y = Data.y.values
     x = Data.drop('y', 1).values
     return x, y
