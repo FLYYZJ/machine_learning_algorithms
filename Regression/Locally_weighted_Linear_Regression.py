@@ -48,7 +48,7 @@ def lwlr(testPoint, x, y, k=1.0):
         print('This is a singular matrix, can not do inverse')
         return
 
-    # ws = np.linalg.pinv(xTx) * (x.T * (weights * y))
+
     ws = xTx.I * (x.T * (weights * y))
     # 返回的是该测试点的加权后的取值
     return testPoint * ws
