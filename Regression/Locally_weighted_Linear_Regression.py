@@ -48,6 +48,7 @@ def lwlr(testPoint, x, y, k=1.0):
         print('This is a singular matrix, can not do inverse')
         return
 
+    # ws = np.linalg.pinv(xTx) * (x.T * (weights * y))
     ws = xTx.I * (x.T * (weights * y))
     # 返回的是该测试点的加权后的取值
     return testPoint * ws
@@ -86,6 +87,11 @@ def Plot_Fit_Line(x, y, yHat):
 
     plt.show()
 
+def regError(y, yHat):
+    return ((y - yHat)**2).sum()
+
+
+
 if __name__ == '__main__':
     x, y = GetData_x_y('resources/ex0.txt')
     print(y[0])
@@ -94,3 +100,6 @@ if __name__ == '__main__':
     yHat = lwlrTest(x, x, y, 0.003)
     # print(yHat)
     Plot_Fit_Line(x, y, yHat)
+    # x, y = GetData_x_y('resources/abalone.txt')
+    # yHat = lwlrTest(x[100:199], x[0:99], y[0:99], 0.01)
+    # print(regError(y[100:199], yHat))

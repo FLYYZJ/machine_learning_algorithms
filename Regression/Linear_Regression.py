@@ -72,3 +72,4 @@ if __name__ == "__main__":
     x, y = GetData_x_y('resources/ex0.txt')
     print(UniryStandRegress(x, y))
     Plot_Fit_Line(x, y, UniryStandRegress(x, y))
+
