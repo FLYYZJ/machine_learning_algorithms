@@ -9,8 +9,17 @@ def GetData_x_y(file_path):
     :return:
     """
     Data = pd.read_table(file_path, header=None)
-    Data = Data.rename(columns={1: 'x', 2: 'y'})
-    # print(Data)
+
+    new_columns_name = {}
+    for i in range(len(Data.columns)):
+        if i == len(Data.columns)-1:
+            new_columns_name[i] = 'y'
+            continue
+        new_columns_name[i] = 'x{}'.format(i)
+
+
+    Data = Data.rename(columns=new_columns_name)
+    print(Data)
     y = Data.y.values
     x = Data.drop('y', 1).values
     return x, y
@@ -39,6 +48,7 @@ def lwlr(testPoint, x, y, k=1.0):
         print('This is a singular matrix, can not do inverse')
         return
 
+
     ws = xTx.I * (x.T * (weights * y))
     # 返回的是该测试点的加权后的取值
     return testPoint * ws
@@ -60,7 +70,13 @@ def lwlrTest(testArr, x, y, k = 1.0):
     return yHat
 
 def Plot_Fit_Line(x, y, yHat):
-
+    """
+    绘图程序
+    :param x:
+    :param y:
+    :param yHat:
+    :return:
+    """
     fig = plt.figure()
     ax = fig.add_subplot(111)
     # scatter方法，绘制散点图，marker属性，是散点的形状，color，是散点的颜色
@@ -70,6 +86,12 @@ def Plot_Fit_Line(x, y, yHat):
     ax.plot(xSort[:, 1], yHat[srtInd], color='b')  # 绘制拟合曲线
 
     plt.show()
+
+def regError(y, yHat):
+    return ((y - yHat)**2).sum()
+
+
+
 if __name__ == '__main__':
     x, y = GetData_x_y('resources/ex0.txt')
     print(y[0])
@@ -78,3 +100,6 @@ if __name__ == '__main__':
     yHat = lwlrTest(x, x, y, 0.003)
 
     Plot_Fit_Line(x, y, yHat)
+    # x, y = GetData_x_y('resources/abalone.txt')
+    # yHat = lwlrTest(x[100:199], x[0:99], y[0:99], 0.01)
+    # print(regError(y[100:199], yHat))
