@@ -76,5 +76,5 @@ if __name__ == '__main__':
     print(x[0])
     print(lwlr(x[0], x, y, 1.0))
     yHat = lwlrTest(x, x, y, 0.003)
-    # print(yHat)
+
     Plot_Fit_Line(x, y, yHat)
