@@ -1,5 +1,5 @@
 # @Time    : 2017/6/18 21:30
-# @Author  : Aries
+# @Author  : Yao zijie
 # @Site    :
 # @File    : Nonnegative_Matrix_Factorization.py
 # @Software: PyCharm Community Edition
