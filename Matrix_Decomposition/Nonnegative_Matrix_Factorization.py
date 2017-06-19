@@ -1,5 +1,5 @@
 # @Time    : 2017/6/18 21:30
-# @Author  : Yao zijie
+# @Author  : Yzj
 # @Site    :
 # @File    : Nonnegative_Matrix_Factorization.py
 # @Software: PyCharm Community Edition
