@@ -72,7 +72,7 @@ def plot_gallery(title, images, n_col=n_col, n_row=n_row):
     plt.subplots_adjust(0.01, 0.05, 0.99, 0.93, 0.04, 0.)
 
 if __name__ == '__main__':
-    # 读入的data是一个4096*64维的矩阵，在此将其做转置，变成64*4096维的矩阵，这是计算需求
+    # 读入的data（经过处理的数字图片，是csv格式）是一个4096*64维的矩阵，在此将其做转置，变成64*4096维的矩阵，这是计算需求
     data = pd.read_csv('data.csv', sep='\t', header=None).values.T
     print(data.shape)
     t = time.time()
