@@ -13,11 +13,11 @@ n_col = 4
 image_shape = (64, 64)
 
 
-def train(V, r, k, e):
+def train(V, components, iternum, e):
     m,n = V.shape
-    W = np.random.random((m, r))
-    H = np.random.random((r, n))
-    for iter in range(k):
+    W = np.random.random((m, components))
+    H = np.random.random((components, n))
+    for iter in range(iternum):
         V_pre = np.dot(W, H)
         E = V - V_pre
 
