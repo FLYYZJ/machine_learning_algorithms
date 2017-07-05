@@ -68,7 +68,7 @@ def plotBestFit(grad_alg_choice):
 
 def gradAscent(dataMatIn, classLables):
     """
-    gradAscent函数 梯度上升法迭代更新函数
+    gradAscent函数 批量式梯度上升法迭代更新函数
     param dataMatIn: 输入训练数据
     param classLables: 输入对应的训练数据的标签
     return: 返回更新完毕的权重值
@@ -91,7 +91,7 @@ def gradAscent(dataMatIn, classLables):
 
 def stocGradAscent_original(dataMatrix, classLabels):
     """
-    stocGradAscent_original 函数 初始随机梯度下降函数
+    stocGradAscent_original 函数 原始版随机梯度下降函数
     param dataMatrix:
     param classLabels:
     return:

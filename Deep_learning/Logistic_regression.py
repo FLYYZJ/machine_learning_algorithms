@@ -35,11 +35,14 @@ class LogisticRegression(object):
             self.x = input_data
         # 给定差值（实际值和预测值之差）
         p_y_given_x = self.output(self.x)
+        # 差值
         d_y = self.y - p_y_given_x
 
         # 更新参数值，向量化更新方式，梯度下降更新法
         self.W += lr * np.dot(self.x.T, d_y)
         self.b += lr * np.mean(d_y, axis=0)
+        self.d_y = d_y
+
 
 
     def output(self, x):
