@@ -10,7 +10,7 @@ import Deep_learning.utils as utils
 
 class HiddenLayer(object):
     '''
-    隐含层类，针对所有深度网络的隐含层设计程序
+    隐含层类
     '''
     def __init__(self, input_data, n_in, n_out, W=None, b=None, rng=None, activation=utils.tanh):
         '''
@@ -18,8 +18,8 @@ class HiddenLayer(object):
         :param input: 输入数据
         :param n_in: 输入数据的宽度
         :param n_out: 输出数据的宽度
-        :param W: 权值矩阵
-        :param b: 偏置值
+        :param W: 权值矩阵，当前层和下一层的链接权值
+        :param b: 偏置值，当前层偏置值
         :param rng: 随机数发生器
         :param activation: 激活函数类型
         '''

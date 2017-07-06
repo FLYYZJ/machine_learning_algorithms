@@ -1,7 +1,7 @@
 # @Time    : 2017/7/5 9:59
 # @Author  : yaozijie
 # @Site    : 
-# @File    : Linear_Regression_TF.py
+# @File    : Linear_Regression_TF.py 给予Tensorflow的简单线性回归实现实例
 # @Software: PyCharm Community Edition
 
 import tensorflow as tf

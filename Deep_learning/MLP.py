@@ -29,6 +29,7 @@ class MLP(object):
                                                     n_out=n_hidden,
                                                     rng=rng,
                                                     activation=utils.tanh)
+        # 构建输出层
         self.log_layer = LR.LogisticRegression(input_data=self.hidden_layer.output,
                                                label=self.y,
                                                n_in=n_hidden,
@@ -36,20 +37,21 @@ class MLP(object):
 
     def train(self):
         '''
-
+        3层网络训练函数
         :return:
         '''
         # 输入数据(直接就作为输入层存在) -> 隐藏层 -> 输出层（logistics回归作为分类器）
         # 输入层数据输入后直接进入隐藏层，然后做正向传播
         layer_input = self.hidden_layer.forward()
-        # 正向传播后进入logistics层（输出层）输出结果
+        # 正向传播后进入logistics层（输出层）输出结果，然后利用输出结果训练输出层
         self.log_layer.train(input_data=layer_input)
-        # 完成后再把输出层的结果反向传播到隐藏层进行权重和偏置值更新
+        # 完成后再把输出层的输出结果反向传播到隐藏层进行隐层和输出层链接权重和隐层偏置值更新
         self.hidden_layer.backward(prev_layer=self.log_layer)
 
     def predict(self, x):
         '''
-        :param x:
+        预测函数
+        :param x:输入测试样例
         :return:
         '''
         x = self.hidden_layer.output(input_data=x)
