@@ -4,9 +4,10 @@
 # @File    : Logistic_regression.py
 # @Software: PyCharm Community Edition
 
-import sys
 import numpy as np
-import Deep_learning.utils as utils
+
+import Deep_learning.Simplify_model.utils as utils
+
 
 class LogisticRegression(object):
     def __init__(self, input_data, label, n_in, n_out):
@@ -67,8 +68,8 @@ class LogisticRegression(object):
         :return:
         '''
         sigmoid_activation = utils.softmax(np.dot(self.x, self.W) + self.b)
-        # 交叉熵损失函数，在MLP中会使用
-        cross_entropy = - np.mean(np.sum(self.y * np.log(sigmoid_activation) + (1-self.y)*np.log(1-sigmoid_activation),axis=1))
+        # 交叉熵损失函数，在DBN网络中会使用，用于评估损失
+        cross_entropy = - np.mean(np.sum(self.y * np.log(sigmoid_activation) + (1-self.y)*np.log(1-sigmoid_activation), axis=1))
 
         return cross_entropy
 

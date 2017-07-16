@@ -1,12 +1,7 @@
-# @Time    : 2017/7/4 20:41
-# @Author  : yaozijie
-# @Site    : 
-# @File    : Hidden_Layer.py
-# @Software: PyCharm Community Edition
-
-import sys
 import numpy as np
-import Deep_learning.utils as utils
+
+import Deep_learning.Simplify_model.utils as utils
+
 
 class HiddenLayer(object):
     '''
@@ -42,7 +37,7 @@ class HiddenLayer(object):
 
         self.activation = activation
         if activation == utils.tanh:
-            self.deactivation =utils.dtanh
+            self.deactivation = utils.dtanh
         elif activation == utils.sigmoid:
             self.deactivation = utils.dsigmoid
         elif activation == utils.ReLU:
@@ -102,18 +97,18 @@ class HiddenLayer(object):
         '''
         if rng is None:
             rng = np.random.RandomState(123)
-        mask = rng.binomial(size=input_data.shape, n=1, p = 1-p)
+        mask = rng.binomial(size=input_data.shape, n=1, p=1-p)
         return mask
 
-    def sample_h_given_v(self, input_data = None):
+    def sample_h_given_v(self, input_data=None):
         '''
-
+        采样函数，给定输出的概率值作为采样率，做二项分布计算
         :param input_data:
         :return:
         '''
         if input_data is not None:
             self.x = input_data
         v_mean = self.output()
-        h_sample = self.rng.binomial(size= v_mean.shape, n=1, p=v_mean)
+        h_sample = self.rng.binomial(size=v_mean.shape, n=1, p=v_mean)
 
         return h_sample

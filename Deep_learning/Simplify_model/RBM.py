@@ -6,8 +6,10 @@
 # 参考  http://www.cnblogs.com/kemaswill/p/3203605.html
 #      https://wenku.baidu.com/view/87efdf28c1c708a1294a448d.html
 
-import Deep_learning.utils as utils
 import numpy as np
+
+import Deep_learning.Simplify_model.utils as utils
+
 
 class RBM(object):
     '''
@@ -29,7 +31,7 @@ class RBM(object):
         self.n_hidden = n_hidden
 
         if rng is None:
-            rng = np.random.RandomState(111)
+            self.rng = np.random.RandomState(111)
         else:
             self.rng = rng
         if W is None:
@@ -96,7 +98,7 @@ class RBM(object):
         :param h0_sample: 隐层单元取值
         :return:
         '''
-        v1_mean = self.propdown(h0_sample) # 条件概率值p_v_given_h,以该概率值作为二项分布的参数
+        v1_mean = self.propdown(h0_sample)  # 条件概率值p_v_given_h,以该概率值作为二项分布的参数
         v1_sample = self.rng.binomial(size=v1_mean.shape,  # 二项分布（隐单元和可视单元的取值为{0,1})
                                       n=1,
                                       p=v1_mean)

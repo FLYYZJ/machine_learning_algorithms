@@ -4,9 +4,10 @@
 # @File    : Logistic_regression.py
 # @Software: PyCharm Community Edition
 
-import sys
 import numpy as np
-import Deep_learning.utils as utils
+
+import Deep_learning.Simplify_model.utils as utils
+
 
 class LogisticRegression(object):
     def __init__(self, input_data, label, n_in, n_out):

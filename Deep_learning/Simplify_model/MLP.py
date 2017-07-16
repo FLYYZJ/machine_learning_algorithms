@@ -1,7 +1,8 @@
 import numpy as np
-import Deep_learning.Hidden_Layer as HiddenLayer
-import Deep_learning.Logistic_regression as LR
-import Deep_learning.utils as utils
+
+import Deep_learning.Simplify_model.Hidden_Layer as HiddenLayer
+import Deep_learning.Simplify_model.Logistic_regression as LR
+import Deep_learning.Simplify_model.utils as utils
 
 
 class MLP(object):

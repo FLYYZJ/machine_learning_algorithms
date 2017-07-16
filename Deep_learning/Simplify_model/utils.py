@@ -1,9 +1,3 @@
-# @Time    : 2017/7/4 20:31
-# @Author  : yao zijie
-# @Site    : 
-# @File    : utils.py
-# @Software: PyCharm Community Edition
-
 import numpy as np
 
 def sigmoid(x):
