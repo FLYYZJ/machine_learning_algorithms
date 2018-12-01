@@ -23,17 +23,20 @@ def train(V, components, iternum, e):
     :param e: 误差阈值
     :return:
     '''
-    m,n = V.shape
+    V = V.T
+    m, n = V.shape # 4096 * 64
     # 随机初始化两个矩阵
-    W = np.random.random((m, components))
-    H = np.random.random((components, n))
+    W = np.random.random((m, components)) # 4096 * 8
+    H = np.random.random((components, n)) # 8 * 64
+
+
     # 迭代计算过程，循环中使用了numpy的切片操作，可以避免直接使用Python的多重循环，从而提高了运行速度
     for iter in range(iternum):
         V_pre = np.dot(W, H)
         E = V - V_pre
 
         err = np.sum(E * E)
-        print(err)
+        # print(err)
         if err < e:
             break
         # 对照更新公式
@@ -77,10 +80,9 @@ if __name__ == '__main__':
     print(data.shape)
     t = time.time()
     W, H = train(data, 8, 1000, 1e-4)
-    # print(H)
+    print(H.shape)
     # print('**********************')
-    # print(W)
+    print(W.shape)
     plot_gallery('%s - Train time %.1fs' % ('Non-negative components - NMF', time.time() - t),
-                 H)
+                 W.T)
     plt.show()
-
