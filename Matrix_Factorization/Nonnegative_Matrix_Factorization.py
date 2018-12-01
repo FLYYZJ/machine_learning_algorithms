@@ -36,7 +36,7 @@ def train(V, components, iternum, e):
         E = V - V_pre
 
         err = np.sum(E * E)
-        # print(err)
+        print(err)
         if err < e:
             break
         # 对照更新公式
